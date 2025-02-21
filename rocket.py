@@ -35,7 +35,7 @@ def objective(var: np.ndarray) -> float:
     u_0, c = var
 
     # Интервал интегрирования
-    t_span = (0, T)  # от 0 до 300 секунд
+    t_span = (0, T)  # от 0 до T секунд
     t_eval = np.linspace(t_span[0], t_span[1], 200)  # точки для сохранения решения
 
     sol = solve_ivp(rhs, t_span, X0, args=(u_0, c), t_eval=t_eval)
@@ -57,7 +57,7 @@ def get_trajectory(var: np.ndarray):
     t_eval = np.linspace(t_span[0], t_span[1], 200)
 
     # Запуск решения уравнения методом Адамса
-    sol = solve_ivp(rhs, t_span, X0, args=(u_0, c), method='LSODA', t_eval=t_eval)
+    sol = solve_ivp(rhs, t_span, X0, args=(u_0, c), t_eval=t_eval)
 
 
     x_array = sol.y[0]
@@ -91,7 +91,7 @@ def get_trajectory(var: np.ndarray):
     plt.show()
 
 
-res =  minimize(objective, [np.pi/3, 0], method='nelder-mead')
+res =  minimize(objective, [np.pi/4, 0], method='nelder-mead')
 
 print(f"(u*, c*) = {res.x}")
 
