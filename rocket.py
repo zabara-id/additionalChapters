@@ -1,12 +1,12 @@
 import numpy as np
-from scipy.optimize import minimize
+from scipy.optimize import minimize, differential_evolution
 from scipy.integrate import solve_ivp
 import matplotlib.pyplot as plt
 
 # Параметры задачи
 A = 60.     # Ускорение от ракеты (пример)
 G = 9.81     # Ускорение свободного падения
-H = 400_000  # Высота, м
+H = 300_000  # Высота, м
 
 X0 = np.array([0, 0, 0, 0], dtype=float)  # НУ [x, y, vx, vy]
 T = 300  # сек
@@ -69,9 +69,9 @@ def get_trajectory(var: np.ndarray):
     fig, axs = plt.subplots(1, 2, figsize=(12, 5))
     
     axs[0].plot(x_array, y_array)
-    axs[0].set_title('Траектория движения')
-    axs[0].set_xlabel('x')
-    axs[0].set_ylabel('y')
+    axs[0].set_title('Траектория "Орешника"')
+    axs[0].set_xlabel('x [км]')
+    axs[0].set_ylabel('y [км]')
     axs[0].grid(True, which='both', linestyle='--', linewidth=0.5)
     axs[0].minorticks_on()
     axs[0].grid(which='minor', color='gray', linestyle=':', linewidth=0.5)
@@ -79,9 +79,9 @@ def get_trajectory(var: np.ndarray):
     # Второй график: скорости vx и vy по времени
     axs[1].plot(t_eval, vx_array, label='vx')
     axs[1].plot(t_eval, vy_array, label='vy')
-    axs[1].set_title('Скорости по времени')
-    axs[1].set_xlabel('Время')
-    axs[1].set_ylabel('Скорость')
+    axs[1].set_title('Скорости "Орешника"')
+    axs[1].set_xlabel('Время [с]')
+    axs[1].set_ylabel('Скорость [м / с]')
     axs[1].legend()
     axs[1].grid(True, which='both', linestyle='--', linewidth=0.5)
     axs[1].minorticks_on()
